@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>Invoice generator by pelyn0!</title>
+  </head>
+  <body>
+<div class="container">
+    <div class="toolbar hidden-print">
+        <div class="row">
+            <div class="col">
+            <label for="cusname">ПІБ</label>
+            <input type="text" class="form-control" id="cusname" placeholder="">
+            </div>
+            <div class="col">
+            <label for="cusloc">Локація</label>
+            <input type="text" class="form-control" id="cusloc" placeholder="">
+            </div>
+            <div class="col">
+            <label for="cusemail">Email</label>
+            <input type="email" class="form-control" id="cusemail" placeholder="name@example.com">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+            <label for="cusphone">Номер телефону</label>
+            <input type="tel" class="form-control" id="cusphone" placeholder="">
+            </div>
+            <div class="col">
+            <button id="saveCustomer" onclick="saveCustomer()" class="btn btn-dark">Зберегти контакти</button>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col">
+            <label for="eventdate">Дата</label>
+            <input type="date" class="form-control" id="eventdate" placeholder="">
+            </div>
+            <div class="col">
+                <label for="eventime">Час</label>
+                <input type="time" class="form-control" id="eventime" placeholder="">
+                </div>
+            <div class="col">
+            <button id="addDateTime" onclick="addDateTime()" class="btn btn-dark">Зберегти час</button>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col">
+            <label for="addinfo">Додаткова інформація</label>
+            <input type="text" class="form-control" id="addinfo" placeholder="">
+            </div>
+            <div class="col">
+            <button id="addDesc" onclick="addDesc()" class="btn btn-dark">Зберегти</button>
+            </div>
+        </div>
+
+        <hr>
+        <div class="row">
+            <div class="col">
+            <label for="prodtit">Назва</label>
+            <input type="text" class="form-control" id="prodtit" placeholder="">
+            </div>
+            <div class="col">
+            <label for="proddesc">Короткий опис</label>
+            <input type="text" class="form-control" id="proddesc" placeholder="">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+            <label for="prodqty">Кількість</label>
+            <input type="number" class="form-control" id="prodqty" placeholder="">
+            </div>
+            <div class="col">
+            <label for="prodprice">Ціна</label>
+            <input type="number" class="form-control" id="prodprice" placeholder="">
+            </div>
+            <div class="col">
+            <button id="addProd" onclick="addProd()" class="btn btn-dark">Додати позицію</button>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col">
+            <label for="proditno">Номер позиції</label>
+            <input type="number" class="form-control" id="proditno" placeholder="">
+            </div>
+            <div class="col">
+            <button id="deleteProd" onclick="deleteProd()" class="btn btn-dark">Видалити позицію</button>
+            </div>
+        </div>
+        <hr>
+        <div class="text-right">
+            <button id="printInvoice" onclick="PrintElem()" class="btn btn-dark">Роздрукувати</button>
+        </div>
+        <hr>
+    </div>
+    <div id="invoice">
+    <header>
+        <div class="row">
+            <div class="col">
+                    <img src="logo_black.png" class="w-25 float-left"/>
+            </div>
+            <div class="col company-details">
+                <h2 class="name text-dark font-weight-bold">
+                    Event-агенція "ВОлЮр"
+                </h2>
+                <div id="company-address">м. Яворів, вул. Маковея 62</div>
+                <div>063 208 7848</div>
+                <div>097 176 3575</div>
+                <div>DJMergal@gmail.com</div>
+            </div>
+        </div>
+    </header>
+<hr class="solid">
+    <div class="row contacts">
+        <div class="col invoice-to">
+            <div class="text-dark font-weight-bold">Контактна особа:</div>
+            <h2 id="customer-name">Ім'я Прізвище</h2>
+            <div id="customer-address">Локація</div>
+            <div id="customer-phone">Номер телефону</div>
+            <div id="customer-email">name@example.com</div>
+        </div>
+        <div class="col text-center alert alert-danger">
+            <h1 class="invoice-id" id="event-date">Дата</h1>
+            <h2 class="invoice-id" id="event-time">Час</h2>
+        </div>
+    </div>
+
+    <table class="table table-striped mt-3">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th class="text-left">Назва</th>
+                <th class="text-center">Кількість</th>
+                <th class="text-center">Ціна</th>
+                <th class="text-center">Сума</th>
+            </tr>
+        </thead>
+        <tbody id="tablebody">
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="2"></td>
+                <td colspan="2" class="font-weight-bold text-right">ЗАГАЛЬНА СУМА</td>
+                <td id="total" class="font-weight-bold text-center">0</td>
+            </tr>
+        </tfoot>
+    </table>
+    <div class="notices">
+        <div class="font-weight-bold">Додаткова інформація:</div>
+        <div id="notice">Трохи додаткової інформації.</div>
+    </div>
+    </div>
+</div>
+</body>
+<script>
+function PrintElem()
+{
+    var mywindow = window.open('', 'PRINT', 'height=400,width=600');
+
+    mywindow.document.write('<html><head>'+'<meta charset="utf-8">'+
+    '<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">' +
+    '<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">' +
+    '<title>' + document.title  + '</title>');
+    mywindow.document.write('</head><body >');
+    mywindow.document.write(document.getElementById('invoice').innerHTML);
+    mywindow.document.write('</body></html>');
+
+    mywindow.document.close(); // necessary for IE >= 10
+    mywindow.focus(); // necessary for IE >= 10*/
+    
+    setTimeout(() => { mywindow.print(); 
+    mywindow.close();}, 500);
+
+    return true;
+}
+
+function deleteProd() {
+        var inp = document.getElementById('proditno');
+        
+        var el = document.getElementById(`product-item-${inp.value}`);
+        el.remove();
+        
+        var totels = document.getElementsByName('product-total');
+        var total = 0;
+        
+        totels.forEach(t => total = Number(total) + Number(t.innerHTML));
+        var tot = document.getElementById('total');
+        tot.innerHTML = total;
+}
+
+function addProd() {
+        var inptit = document.getElementById('prodtit');
+        var inpdesc = document.getElementById('proddesc');
+        var inpqty = document.getElementById('prodqty');
+        var inpprice = document.getElementById('prodprice');
+        
+        var tbbody = document.getElementById('tablebody');
+
+        var productitems = document.getElementsByName('product-total');
+        tbbody.innerHTML +=
+           "<tr name='product-item' id='product-item-"+(productitems.length+1)+"'>" +
+                "<td class='product-number'>"+ (productitems.length+1) +"</td>" +
+                "<td class='text-left'>" +
+                    "<h3 name='product-name'>" +
+                        inptit.value +
+                    "</h3>" +
+                   "<div name='product-description'>" + 
+                   inpdesc.value +
+                   "</div>" +
+                "</td>" +
+                "<td name='product-qty' class='text-center'>"+ inpqty.value +"</td>"+
+                "<td name='product-price' class='text-center'>"+ inpprice.value +"</td>"+
+                "<td name='product-total' class='text-center'>"+ (inpqty.value*inpprice.value) +"</td>"+
+            "</tr>";
+        var totels = document.getElementsByName('product-total');
+        var total = 0;
+        
+        totels.forEach(t => total = Number(total) + Number(t.innerHTML));
+        var tot = document.getElementById('total');
+        tot.innerHTML = total;
+    } 
+
+     function printPopUp() {
+                window.print();
+            }
+
+    function saveCustomer() {
+        var inp = document.getElementById('cusname');
+        var div = document.getElementById('customer-name');
+        div.innerHTML = inp.value;
+
+        inp = document.getElementById('cusloc');
+        div = document.getElementById('customer-address')
+        div.innerHTML = inp.value;
+        
+        inp = document.getElementById('cusemail');
+        div = document.getElementById('customer-email')
+        div.innerHTML = inp.value;
+        
+        inp = document.getElementById('cusphone');
+        div = document.getElementById('customer-phone')
+        div.innerHTML = inp.value;
+    } 
+
+    function addDateTime() {
+        var inp = document.getElementById('eventdate');
+        var div = document.getElementById('event-date');
+        div.innerHTML = inp.value;
+        
+        inp = document.getElementById('eventime');
+        div = document.getElementById('event-time')
+        div.innerHTML = inp.value;
+    }
+
+    function addDesc() {
+        var inp = document.getElementById('addinfo');
+        var div = document.getElementById('notice');
+        div.innerHTML = inp.value;
+    } 
+</script>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="js/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>
