@@ -13,7 +13,7 @@
   <body>
 <div class="container">
     <div class="toolbar hidden-print">
-        <div class="row">
+        <div class="row mb-4">
             <div class="col">
             <label for="cusname">ПІБ</label>
             <input type="text" class="form-control" id="cusname" placeholder="">
@@ -22,22 +22,24 @@
             <label for="cusloc">Локація</label>
             <input type="text" class="form-control" id="cusloc" placeholder="">
             </div>
+        </div>
+        <div class="row mb-4">
             <div class="col">
             <label for="cusemail">Email</label>
             <input type="email" class="form-control" id="cusemail" placeholder="name@example.com">
             </div>
-        </div>
-        <div class="row">
             <div class="col">
             <label for="cusphone">Номер телефону</label>
             <input type="tel" class="form-control" id="cusphone" placeholder="">
             </div>
+        </div>
+        <div class="row mb-4">
             <div class="col">
-            <button id="saveCustomer" onclick="saveCustomer()" class="btn btn-dark">Зберегти контакти</button>
-            </div>
+                <button id="saveCustomer" onclick="saveCustomer()" class="btn btn-dark btn-block">Зберегти контакти</button>
+                </div>
         </div>
         <hr>
-        <div class="row">
+        <div class="row mb-4">
             <div class="col">
             <label for="eventdate">Дата</label>
             <input type="date" class="form-control" id="eventdate" placeholder="">
@@ -46,23 +48,28 @@
                 <label for="eventime">Час</label>
                 <input type="time" class="form-control" id="eventime" placeholder="">
                 </div>
-            <div class="col">
-            <button id="addDateTime" onclick="addDateTime()" class="btn btn-dark">Зберегти час</button>
-            </div>
         </div>
+        <div class="row mb-4">
+            <div class="col">
+                <button id="addDateTime" onclick="addDateTime()" class="btn btn-dark btn-block">Зберегти час</button>
+                </div>
+            </div>
         <hr>
-        <div class="row">
+        <div class="row mb-4">
             <div class="col">
             <label for="addinfo">Додаткова інформація</label>
             <input type="text" class="form-control" id="addinfo" placeholder="">
             </div>
-            <div class="col">
-            <button id="addDesc" onclick="addDesc()" class="btn btn-dark">Зберегти</button>
-            </div>
         </div>
 
+        <div class="row mb-4">
+            <div class="col">
+                <button id="addDesc" onclick="addDesc()" class="btn btn-dark btn-block">Зберегти</button>
+                </div>
+            </div>
+
         <hr>
-        <div class="row">
+        <div class="row mb-4">
             <div class="col">
             <label for="prodtit">Назва</label>
             <input type="text" class="form-control" id="prodtit" placeholder="">
@@ -72,7 +79,7 @@
             <input type="text" class="form-control" id="proddesc" placeholder="">
             </div>
         </div>
-        <div class="row">
+        <div class="row mb-4">
             <div class="col">
             <label for="prodqty">Кількість</label>
             <input type="number" class="form-control" id="prodqty" placeholder="">
@@ -81,23 +88,39 @@
             <label for="prodprice">Ціна</label>
             <input type="number" class="form-control" id="prodprice" placeholder="">
             </div>
+        </div>
+        <div class="row mb-4">
             <div class="col">
-            <button id="addProd" onclick="addProd()" class="btn btn-dark">Додати позицію</button>
-            </div>
+                <button id="addProd" onclick="addProd()" class="btn btn-dark btn-block">Додати позицію</button>
+                </div>
         </div>
         <hr>
-        <div class="row">
+        <div class="row mb-4">
+            <div class="col">
+            <label for="disc">Знижка</label>
+            <input type="number" class="form-control" id="disc" placeholder="">
+            </div>
+        </div>
+        <div class="row mb-4">
+            <div class="col">
+                <button id="disc" onclick="disc()" class="btn btn-dark btn-block">Встановити знижку</button>
+                </div>
+        </div>
+        <hr>
+        <div class="row mb-4">
             <div class="col">
             <label for="proditno">Номер позиції</label>
             <input type="number" class="form-control" id="proditno" placeholder="">
             </div>
+        </div>
+        <div class="row mb-4">
             <div class="col">
-            <button id="deleteProd" onclick="deleteProd()" class="btn btn-dark">Видалити позицію</button>
-            </div>
+                <button id="deleteProd" onclick="deleteProd()" class="btn btn-dark btn-block">Видалити позицію</button>
+                </div>
         </div>
         <hr>
         <div class="text-right">
-            <button id="printInvoice" onclick="PrintElem()" class="btn btn-dark">Роздрукувати</button>
+            <button id="printInvoice" onclick="PrintElem()" class="btn btn-dark btn-block">Роздрукувати</button>
         </div>
         <hr>
     </div>
