@@ -12,7 +12,22 @@
   </head>
   <body>
 <div class="container">
-    <div class="toolbar hidden-print">
+    <div class="row">
+    <div class="col mr-2">
+    <div class="toolbar hidden-print" id="collapseControls">
+        <div class="row mb-4 mt-4">
+            <div class="col">
+                <label for="openInvoice" class="btn btn-dark btn-block">Відкрити
+                    <input type="file" accept=".volur" id="openInvoice" onclick="openSaved()" class="form-control" hidden></label>
+            </div>
+        <div class="col">
+            <button id="saveInvoice" onclick="saveElem()" class="btn btn-dark btn-block">Зберегти</button>
+        </div>
+        <div class="col">
+            <button id="printInvoice" onclick="PrintElem()" class="btn btn-dark btn-block">Роздрукувати</button>
+        </div>
+        </div>
+        <hr>
         <div class="row mb-4">
             <div class="col">
             <label for="cusname">ПІБ</label>
@@ -118,21 +133,9 @@
                 <button id="deleteProd" onclick="deleteProd()" class="btn btn-dark btn-block">Видалити позицію</button>
                 </div>
         </div>
-        <hr>
-        <div class="row mb-4">
-            <div class="col">
-                <label for="openInvoice" class="btn btn-dark btn-block">Відкрити
-                    <input type="file" accept=".volur" id="openInvoice" onclick="openSaved()" class="form-control" hidden></label>
-            </div>
-        <div class="col">
-            <button id="saveInvoice" onclick="saveElem()" class="btn btn-dark btn-block">Зберегти</button>
-        </div>
-        <div class="col">
-            <button id="printInvoice" onclick="PrintElem()" class="btn btn-dark btn-block">Роздрукувати</button>
-        </div>
-        </div>
-        <hr>
     </div>
+</div>
+<div class="col ml-2"> 
     <div id="invoice">
     <header>
         <div class="row">
@@ -201,9 +204,14 @@
     </div>
     </div>
 </div>
+</div>
+</div>
 </body>
 <script>
-
+function showControls()
+{
+    collapseControls.setAttribute("hidden", "true");
+}
 
 function PrintElem()
 {
@@ -365,8 +373,7 @@ function addProd() {
 </script>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="js/jquery.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   </body>
