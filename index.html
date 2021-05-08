@@ -103,7 +103,7 @@
         </div>
         <div class="row mb-4">
             <div class="col">
-                <button id="disc" onclick="disc()" class="btn btn-dark btn-block">Встановити знижку</button>
+                <button id="disc" onclick="setDisc()" class="btn btn-dark btn-block">Встановити знижку</button>
                 </div>
         </div>
         <hr>
@@ -119,8 +119,17 @@
                 </div>
         </div>
         <hr>
-        <div class="text-right">
+        <div class="row mb-4">
+            <div class="col">
+                <label for="openInvoice" class="btn btn-dark btn-block">Відкрити
+                    <input type="file" accept=".volur" id="openInvoice" onclick="openSaved()" class="form-control" hidden></label>
+            </div>
+        <div class="col">
+            <button id="saveInvoice" onclick="saveElem()" class="btn btn-dark btn-block">Зберегти</button>
+        </div>
+        <div class="col">
             <button id="printInvoice" onclick="PrintElem()" class="btn btn-dark btn-block">Роздрукувати</button>
+        </div>
         </div>
         <hr>
     </div>
@@ -171,8 +180,18 @@
         <tfoot>
             <tr>
                 <td colspan="2"></td>
-                <td colspan="2" class="font-weight-bold text-right">ЗАГАЛЬНА СУМА</td>
-                <td id="total" class="font-weight-bold text-center">0</td>
+                <td colspan="2" class="text-right">ЗАГАЛЬНА СУМА</td>
+                <td id="total" class="text-center">0</td>
+            </tr>
+            <tr>
+                <td colspan="2"></td>
+                <td colspan="2" class="text-right">ЗНИЖКА</td>
+                <td id="discount" class="text-center">0</td>
+            </tr>
+            <tr>
+                <td colspan="2"></td>
+                <td colspan="2" class="font-weight-bold text-right">КІНЦЕВА СУМА</td>
+                <td id="end-total" class="font-weight-bold text-center">0</td>
             </tr>
         </tfoot>
     </table>
@@ -184,6 +203,8 @@
 </div>
 </body>
 <script>
+
+
 function PrintElem()
 {
     var mywindow = window.open('', 'PRINT', 'height=400,width=600');
@@ -205,6 +226,41 @@ function PrintElem()
     return true;
 }
 
+function openSaved()
+{
+    document.getElementById('openInvoice')
+            .addEventListener('change', function() {
+              
+            var fr=new FileReader();
+            fr.onload=function(){
+                document.getElementById('invoice')
+                        .innerHTML=fr.result;
+            }
+              
+            fr.readAsText(this.files[0]);
+        })
+}
+
+function saveElem()
+{
+    download(document.getElementById('customer-name').innerHTML + " - " + document.getElementById('event-date').innerHTML + ".volur", document.getElementById('invoice').innerHTML);
+}
+
+function download(filename, text) {
+    var pom = document.createElement('a');
+    pom.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+    pom.setAttribute('download', filename);
+
+    if (document.createEvent) {
+        var event = document.createEvent('MouseEvents');
+        event.initEvent('click', true, true);
+        pom.dispatchEvent(event);
+    }
+    else {
+        pom.click();
+    }
+}
+
 function deleteProd() {
         var inp = document.getElementById('proditno');
         
@@ -217,6 +273,10 @@ function deleteProd() {
         totels.forEach(t => total = Number(total) + Number(t.innerHTML));
         var tot = document.getElementById('total');
         tot.innerHTML = total;
+        
+        var disc = document.getElementById('discount');
+        var endtot = document.getElementById('end-total');
+        endtot.innerHTML = Number(total) - Number(disc.innerHTML);
 }
 
 function addProd() {
@@ -249,6 +309,10 @@ function addProd() {
         totels.forEach(t => total = Number(total) + Number(t.innerHTML));
         var tot = document.getElementById('total');
         tot.innerHTML = total;
+
+        var disc = document.getElementById('discount');
+        var endtot = document.getElementById('end-total');
+        endtot.innerHTML = Number(total) - Number(disc.innerHTML);
     } 
 
      function printPopUp() {
@@ -282,6 +346,16 @@ function addProd() {
         div = document.getElementById('event-time')
         div.innerHTML = inp.value;
     }
+
+    function setDisc() {
+        var inp = document.getElementById('disc');
+        var div = document.getElementById('discount');
+        div.innerHTML = inp.value;
+
+        var tot = document.getElementById('total');
+        var endtot = document.getElementById('end-total');
+        endtot.innerHTML = Number(tot.innerHTML) - Number(inp.value);
+    } 
 
     function addDesc() {
         var inp = document.getElementById('addinfo');
