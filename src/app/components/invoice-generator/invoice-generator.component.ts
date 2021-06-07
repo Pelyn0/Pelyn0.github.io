@@ -12,7 +12,6 @@ export class InvoiceGeneratorComponent implements OnInit {
   @Output() close: Subject<boolean>;
   private modalRef: BsModalRef;
   currentDateMinutes: any;
-  files:any;
 
   constructor(private bsModalRef: BsModalRef) {
     this.modalRef = bsModalRef;
@@ -82,7 +81,7 @@ export class InvoiceGeneratorComponent implements OnInit {
                         .innerHTML = <string>fr.result;
             }
               
-            fr.readAsText(this.files[0]);
+            //fr.readAsText(this.files);
         })
 }
 
