@@ -1,0 +1,205 @@
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "default" color = "#fff" type = "ball-grid-beat" [fullScreen] = "true"></ngx-spinner>
+<div class="page-header page-header-xs" data-parallax="true" style="background-image: url('../../../../assets/img/backgrounds/{{currentDateMinutes%10}}.jpg');">
+    <div class="filter"></div>
+    <div class="moving-clouds" style="background-image: url('assets/img/clouds.png'); "></div>
+</div>
+
+<div class="container">
+    <div class="row">
+    <div class="col mr-2">
+    <div class="toolbar hidden-print" id="collapseControls">
+        <div class="row mb-4 mt-4">
+            <div class="col">
+                <label for="openInvoice" class="btn btn-dark btn-block">Відкрити
+                    <input type="file" accept=".volur" id="openInvoice" (click)="openSaved()" class="form-control" hidden></label>
+            </div>
+        <div class="col">
+            <button id="saveInvoice" (click)="saveElem()" class="btn btn-dark btn-block">Зберегти</button>
+        </div>
+        <div class="col">
+            <button id="printInvoice" (click)="printElem()" class="btn btn-dark btn-block">Зберегти для друку / роздрукувати</button>
+        </div>
+        </div>
+        <hr>
+        <div class="row mb-4">
+            <div class="col">
+            <label for="cusname">ПІБ</label>
+            <input type="text" class="form-control" id="cusname" placeholder="">
+            </div>
+            <div class="col">
+            <label for="cusloc">Локація</label>
+            <input type="text" class="form-control" id="cusloc" placeholder="">
+            </div>
+        </div>
+        <div class="row mb-4">
+            <div class="col">
+            <label for="cusemail">Email</label>
+            <input type="email" class="form-control" id="cusemail" placeholder="name@example.com">
+            </div>
+            <div class="col">
+            <label for="cusphone">Номер телефону</label>
+            <input type="tel" class="form-control" id="cusphone" placeholder="">
+            </div>
+        </div>
+        <div class="row mb-4">
+            <div class="col">
+                <button id="saveCustomer" (click)="saveCustomer()" class="btn btn-dark btn-block">Зберегти контакти</button>
+                </div>
+        </div>
+        <hr>
+        <div class="row mb-4">
+            <div class="col">
+            <label for="eventdate">Дата</label>
+            <input type="date" class="form-control" id="eventdate" placeholder="">
+            </div>
+            <div class="col">
+                <label for="eventime">Час</label>
+                <input type="time" class="form-control" id="eventime" placeholder="">
+                </div>
+        </div>
+        <div class="row mb-4">
+            <div class="col">
+                <button id="addDateTime" onclick="addDateTime()" class="btn btn-dark btn-block">Зберегти час</button>
+                </div>
+            </div>
+        <hr>
+        <div class="row mb-4">
+            <div class="col">
+            <label for="addinfo">Додаткова інформація</label>
+            <input type="text" class="form-control" id="addinfo" placeholder="">
+            </div>
+        </div>
+
+        <div class="row mb-4">
+            <div class="col">
+                <button id="addDesc" onclick="addDesc()" class="btn btn-dark btn-block">Зберегти</button>
+                </div>
+            </div>
+
+        <hr>
+        <div class="row mb-4">
+            <div class="col">
+            <label for="prodtit">Назва</label>
+            <input type="text" class="form-control" id="prodtit" placeholder="">
+            </div>
+            <div class="col">
+            <label for="proddesc">Короткий опис</label>
+            <input type="text" class="form-control" id="proddesc" placeholder="">
+            </div>
+        </div>
+        <div class="row mb-4">
+            <div class="col">
+            <label for="prodqty">Кількість</label>
+            <input type="number" class="form-control" id="prodqty" placeholder="">
+            </div>
+            <div class="col">
+            <label for="prodprice">Ціна</label>
+            <input type="number" class="form-control" id="prodprice" placeholder="">
+            </div>
+        </div>
+        <div class="row mb-4">
+            <div class="col">
+                <button id="addProd" (click)="addProd()" class="btn btn-dark btn-block">Додати позицію</button>
+                </div>
+        </div>
+        <hr>
+        <div class="row mb-4">
+            <div class="col">
+            <label for="disc">Знижка</label>
+            <input type="number" class="form-control" id="disc" placeholder="">
+            </div>
+        </div>
+        <div class="row mb-4">
+            <div class="col">
+                <button id="disc" (click)="setDisc()" class="btn btn-dark btn-block">Встановити знижку</button>
+                </div>
+        </div>
+        <hr>
+        <div class="row mb-4">
+            <div class="col">
+            <label for="proditno">Номер позиції</label>
+            <input type="number" class="form-control" id="proditno" placeholder="">
+            </div>
+        </div>
+        <div class="row mb-4">
+            <div class="col">
+                <button id="deleteProd" (click)="deleteProd()" class="btn btn-dark btn-block">Видалити позицію</button>
+                </div>
+        </div>
+    </div>
+</div>
+<div class="col ml-2"> 
+    <div id="invoice">
+    <header>
+        <div class="row">
+            <div class="col">
+                    <img src="assets/img/volur-logo.png" class="w-50 float-left"/>
+            </div>
+            <div class="col company-details">
+                <h2 class="name text-dark font-weight-bold">
+                    Event-агенція "ВОлЮр"
+                </h2>
+                <div id="company-address">м. Яворів, вул. Маковея 62</div>
+                <div>063 208 7848</div>
+                <div>097 176 3575</div>
+                <div>DJMergal@gmail.com</div>
+            </div>
+        </div>
+    </header>
+<hr class="solid">
+    <div class="row contacts">
+        <div class="col invoice-to">
+            <div class="text-dark font-weight-bold">Контактна особа:</div>
+            <h2 id="customer-name">Ім'я Прізвище</h2>
+            <div id="customer-address">Локація</div>
+            <div id="customer-phone">Номер телефону</div>
+            <div id="customer-email">name@example.com</div>
+        </div>
+        <div class="col text-center alert alert-danger">
+            <h1 class="invoice-id" id="event-date">Дата</h1>
+            <h2 class="invoice-id" id="event-time">Час</h2>
+        </div>
+    </div>
+
+    <table class="table table-striped mt-3">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th class="text-left">Назва</th>
+                <th class="text-center">Кількість</th>
+                <th class="text-center">Ціна</th>
+                <th class="text-center">Сума</th>
+            </tr>
+        </thead>
+        <tbody id="tablebody">
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="2"></td>
+                <td colspan="2" class="text-right">ЗАГАЛЬНА СУМА</td>
+                <td id="total" class="text-center">0</td>
+            </tr>
+            <tr>
+                <td colspan="2"></td>
+                <td colspan="2" class="text-right">ЗНИЖКА</td>
+                <td id="discount" class="text-center">0</td>
+            </tr>
+            <tr>
+                <td colspan="2"></td>
+                <td colspan="2" class="font-weight-bold text-right">КІНЦЕВА СУМА</td>
+                <td id="end-total" class="font-weight-bold text-center">0</td>
+            </tr>
+        </tfoot>
+    </table>
+    <div class="notices">
+        <div class="font-weight-bold">Додаткова інформація:</div>
+        <div id="notice">Трохи додаткової інформації.</div>
+    </div>
+    </div>
+</div>
+</div>
+</div>
+<script src="js/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>

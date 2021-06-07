@@ -1,0 +1,87 @@
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "default" color = "#fff" type = "ball-grid-beat" [fullScreen] = "true"></ngx-spinner>
+<div class="page-header page-header-xs" data-parallax="true" style="background-image: url('../../../../assets/img/backgrounds/{{currentDateMinutes%10}}.jpg');">
+    <div class="filter"></div>
+    <div class="moving-clouds" style="background-image: url('assets/img/clouds.png'); "></div>
+</div>
+
+<ng-container *ngIf="isCreatedFormGroup">
+    <div class="container">
+        <div class="dark-text mt-5 row">
+            <div class="col-3 back-button" (click)="backButton()">
+                <i class="nc-icon nc-minimal-left"></i> Назад
+            </div>
+            <p class="col-6" *ngIf="!id">Новий продукт</p>
+            <p class="col-6" *ngIf="id">Редагування продукту</p>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-10 col-12">
+                <form class="user-form contact-form pt-5 pb-3 mb-5" [formGroup]="newProduct">
+                    <div class="row justify-content-center">
+                        <div class="col-10">
+
+                          <div class="form-group">
+                                <label for="title">Назва *</label>
+                                <input [(ngModel)]="newProduct.value.title" class="form-control" id="title" type="text"
+                                    formControlName="title" required>
+                                <div
+                                    *ngIf="invalidForm.title.touched || (isPreviewSubmitted && invalidForm.title.errors)">
+                                    <div class="error" *ngIf="invalidForm.title.errors?.required">
+                                        <p>Поле обов'язкове до заповнення!</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="tags">Теги *</label>
+                                <input [(ngModel)]="newProduct.value.tags" class="form-control" id="tags" type="text"
+                                    formControlName="tags" required>
+                                <div
+                                    *ngIf="invalidForm.tags.touched || (isPreviewSubmitted && invalidForm.tags.errors)">
+                                    <div class="error" *ngIf="invalidForm.tags.errors?.required">
+                                        <p>Поле обов'язкове до заповнення!</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="description">Опис *</label>
+                                <textarea rows="5" [(ngModel)]="newProduct.value.description" class="form-control" id="description" type="text"
+                                    formControlName="description" required></textarea>
+                                <div
+                                    *ngIf="invalidForm.description.touched || (isPreviewSubmitted && invalidForm.description.errors)">
+                                    <div class="error" *ngIf="invalidForm.description.errors?.required">
+                                        <p>Поле обов'язкове до заповнення!</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group mt-5">
+                                <div class="row">
+                                    <div *ngIf="newProduct.invalid && newProduct.touched"
+                                        class="col-lg-12 error text-center">
+                                        Форму заповнено неправильно.
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-12 text-md-left text-center">
+                                        <button [disabled]="newProduct.invalid" type="button" class="btn btn-block btn-outline-default btn-round"
+                                            [ngClass]="{'disabled-button': newProduct.invalid}"
+                                            (click)="preview()">
+                                            <i class="nc-icon nc-badge"></i> Переглянути
+                                        </button>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-12 text-center">
+                                        <button [disabled]="isPublishClicked || newProduct.invalid" type="submit"
+                                            class="btn btn-block btn-outline-default btn-round"
+                                            [ngClass]="{'disabled-button': newProduct.invalid}"
+                                            (click)="publish()">
+                                            <i class="nc-icon nc-world-2"></i> Опублікувати
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</ng-container>

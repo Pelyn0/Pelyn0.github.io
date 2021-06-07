@@ -1,0 +1,50 @@
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "default" color = "#fff" type = "ball-grid-beat" [fullScreen] = "true"></ngx-spinner>
+<div class="page-header page-header-xs" data-parallax="true" style="background-image: url('../../../../assets/img/backgrounds/{{currentDateMinutes%10}}.jpg');">
+    <div class="filter"></div>
+    <div class="moving-clouds" style="background-image: url('assets/img/clouds.png'); "></div>
+</div>
+
+<div class="container col-11 vacancy my-4">
+  <div class="row justify-content-md-center justify-content-center">
+
+    <div class="col-12 mb-md-4 mb-0 text-center">
+      <div class="dark-text position-relative">{{product?.title}}</div>
+      <div class="subtext">
+        {{product?.tags}}
+      </div>
+    </div>
+
+    <div class="col-12">
+      <div class="row no-gutters">
+        <div class="col-12 col-lg-7 pb-md-5 pb-0 main-content-container">
+          <div>
+            <p class="title-vacancy">Опис</p>
+            <p class="binding-property" [innerHTML]="product?.description | noSanitize"></p>
+          </div>
+
+          <div class="row no-gutters">
+            <div class="col-12 order-2 order-md-1">
+              <volur-share-social [model]="product"></volur-share-social>
+            </div>
+            <div class="col-12 order-1 order-md-2 mt-0 mt-md-4">
+              <p class="title-vacancy d-block d-md-none">Apply vacancy</p>
+              <div class="d-flex">
+                <button type="button" class="btn btn-block btn-outline-default btn-round"
+                  (click)="applyNowModal()">Apply
+                </button>
+                <button type="button" class="btn btn-block btn-outline-default btn-round" (click)="askRecruiterModal()">Ask the
+                  Recruiter
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="d-none d-md-block col"></div>
+        <div class="col-12 col-lg-4 send-cv-form-container d-none d-md-block">
+          <volur-send-cv-form [vacancyDirection]="1" [vacancyId]="id"></volur-send-cv-form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<volur-admin-add-edit-preview *ngIf="hide" [typeToPublish]="typeToPublish.Product"></volur-admin-add-edit-preview>

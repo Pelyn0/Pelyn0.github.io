@@ -1,0 +1,19 @@
+<div class="section text-center">
+    <div class="container">
+        <h2 class="title">У нас можна придбати</h2>
+        <swiper [config]="config">
+            <div class="swiper-slide" *ngFor="let product of products">
+                <div class="card card-plain" style="width: 20rem;">
+                    <img class="card-img-top" src="assets/img/products/product{{product.id%3}}.jpg" alt="{{product.title}}">
+                    <div class="card-block ">
+                      <h4 class="card-title">{{product.title}}</h4>
+                      <p class="card-description text-center">{{product.description}}</p>
+                    </div>
+                    <div class="card-footer text-center">
+                        <a [routerLink]="['product', product.id]" class="btn-outline-dark btn btn-round">Детальніше</a>
+                    </div>
+                </div>
+            </div>
+          </swiper>
+    </div>
+</div>

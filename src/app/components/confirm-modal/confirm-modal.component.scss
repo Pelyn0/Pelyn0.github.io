@@ -1,0 +1,27 @@
+::ng-deep.modal-content {
+    border-radius: 0px;
+}
+
+.modal-body {
+    padding-top: 1px;
+}
+
+.cancel-button{
+    position: absolute;
+    right: 10px;
+    top: 5px;
+}
+
+.confirm-delete-button:hover{
+    background-color: #ff000066;
+    color: #000000;
+}
+
+.cancel-delete-button:hover{
+    background-color: #99ff0066;
+    color: #000000;
+}
+
+p {
+    color: #3f3f3f;
+}

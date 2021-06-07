@@ -1,0 +1,47 @@
+<nav class="navbar navbar-expand-lg fixed-top navbar-transparent" color-on-scroll="500">
+    <div class="container">
+        <div class="navbar-translate">
+            <a *ngIf="!isMainPage()" class="navbar-brand" href="/">EVENT-АГЕНЦІЯ ВОЛЮР</a>
+            <a *ngIf="isMainPage()" pageScroll [pageScrollEasing]="myEasing" class="navbar-brand" href="#top">EVENT-АГЕНЦІЯ ВОЛЮР</a>
+            <button class="navbar-toggler navbar-burger" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation" (click)="sidebarToggle()" *ngIf="addLinks()">
+                <span class="navbar-toggler-bar"></span>
+                <span class="navbar-toggler-bar"></span>
+                <span class="navbar-toggler-bar"></span>
+            </button>
+        </div>
+        <div class="navbar-collapse" id="navbarToggler" *ngIf="addLinks()">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item" *ngIf="isMainPage()">
+                    <a pageScroll [pageScrollEasing]="myEasing" href="#about-us" class="nav-link"><i class="nc-icon nc-alert-circle-i"></i> Про нас</a>
+                </li>
+                <li class="nav-item" *ngIf="isMainPage()">
+                    <a pageScroll [pageScrollEasing]="myEasing" href="#services" class="nav-link"><i class="nc-icon nc-bulb-63"></i> Послуги</a>
+                </li>
+                <li class="nav-item" *ngIf="isMainPage()">
+                    <a pageScroll [pageScrollEasing]="myEasing" href="#products" class="nav-link"><i class="nc-icon nc-basket"></i> Продукти</a>
+                </li>
+                <li class="nav-item" *ngIf="isMainPage() && !isUserAuthenticated">
+                    <a href="/login" class="nav-link"><i class="nc-icon nc-single-02"></i> Увійти</a>
+                </li>
+                <li class="nav-item" *ngIf="(isMainPage() || isItemPage()) && isUserAuthenticated">
+                    <a href="/user-profile" class="nav-link"><i class="nc-icon nc-single-02"></i> Профіль</a>
+                </li>
+                <li class="nav-item" *ngIf="showLogOut() && isUserAuthenticated">
+                    <a href="/login" (click)="logout()" class="nav-link"><i class="nc-icon nc-user-run"></i> Вийти</a>
+                </li>
+                <li class="nav-item" *ngIf="isMainPage()">
+                    <a class="nav-link" rel="tooltip" title="Follow us on Instagram" data-placement="bottom" href="https://www.instagram.com/event_volur" target="_blank">
+                        <i class="fa fa-instagram"></i>
+                        <p class="d-lg-none">Instagram</p>
+                    </a>
+                </li>
+                <li class="nav-item" *ngIf="isMainPage()">
+                    <a class="nav-link" rel="tooltip" title="Like us on Facebook" data-placement="bottom" href="https://www.facebook.com/volyur" target="_blank">
+                        <i class="fa fa-facebook-square"></i>
+                        <p class="d-lg-none">Facebook</p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

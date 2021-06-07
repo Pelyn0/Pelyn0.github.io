@@ -1,0 +1,19 @@
+<div class="section section-dark text-center">
+    <div class="container">
+        <h2 class="title">У нас можна замовити</h2>
+        <swiper [config]="config">
+            <div class="swiper-slide" *ngFor="let service of services">
+                <div class="card card-plain" style="width: 20rem;">
+                    <img class="card-img-top" src="assets/img/services/service{{service.id}}.jpg" alt="{{service.title}}">
+                    <div class="card-block ">
+                      <h4 class="card-title">{{service.title}}</h4>
+                      <p class="card-description text-center">{{service.description}}</p>
+                    </div>
+                    <div class="card-footer text-center">
+                        <a [routerLink]="['service', service.id]" class="btn btn-outline-neutral btn-round">Детальніше</a>
+                    </div>
+                </div>
+            </div>
+          </swiper>
+    </div>
+</div>

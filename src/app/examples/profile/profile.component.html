@@ -1,0 +1,31 @@
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "default" color = "#fff" type = "ball-grid-beat" [fullScreen] = "true"></ngx-spinner>
+<div class="wrapper">
+    <div class="page-header page-header-xs" data-parallax="true" style="background-image: url('./assets/img/backgrounds/{{currentDateMinutes%10}}.jpg');">
+        <div class="filter"></div>
+        <div class="moving-clouds" style="background-image: url('assets/img/clouds.png'); "></div>
+    </div>
+    <div class="section profile-content">
+        <div class="container">
+            <div class="owner">
+                <div class="avatar">
+                    <img src="./assets/img/faces/user.png" alt="Jane Faker" class="img-circle img-no-padding img-responsive">
+                </div>
+                <div class="name">
+                    <h4 class="title">Jane Faker<br /></h4>
+                    <h6 class="description">Music Producer</h6>
+                </div>
+            </div>
+            <div class="row mt-5">
+                <div class="col-3">
+                    <a [routerLink]="['./services']" class="btn btn-block btn-outline-default btn-round"><i class="nc-icon nc-bulb-63"></i> Послуги</a>
+                    <a [routerLink]="['./products']" class="btn btn-block btn-outline-default btn-round"><i class="nc-icon nc-basket"></i> Товари</a>
+                    <a href="/invoice-generator" class="btn btn-block btn-outline-default btn-round"><i class="nc-icon nc-basket"></i> Скласти замовлення</a>
+                    <a [routerLink]="['./settings']" class="btn btn-block btn-outline-default btn-round"><i class="fa fa-cog"></i> Налаштування</a>
+                </div>
+                <div class="col-9">
+                    <router-outlet></router-outlet>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,116 @@
+.vacancy {
+    .dark-text {
+        text-transform: uppercase;
+        text-align: center;
+    }
+
+    .subtext {
+        text-align: center;
+        text-transform: uppercase;
+        font-weight: 300;
+
+        span:nth-child(n) {
+            &::after {
+                content: '/';
+                margin-right: 5px;
+                font-weight: 700;
+                margin-left: 5px;
+            }
+        }
+
+        span:nth-last-child(1) {
+            &::after {
+                content: '';
+            }
+        }
+    }
+
+    .exp-badge {
+      vertical-align: top;
+      margin-left: 10px;
+    }
+
+    .title-vacancy {
+        font-size: 20px;
+        font-weight: 700;
+        color: #0097a7;
+        margin-top: 30px;
+        margin-bottom: 15px;
+        text-transform: uppercase;
+
+        @media screen and (max-width: 767px) {
+            font-size: 18px;
+            font-weight: 500;
+        }
+    }
+
+    p {
+        font-size: 16px;
+        font-weight: normal;
+        color: #3f3f3f;
+        margin-bottom: 0px;
+    }
+
+    ul {
+        margin-bottom: 0px;
+
+        li {
+            margin-left: -20px;
+            color: #3f3f3f;
+            font-size: 16px;
+            font-weight: normal;
+
+            &:only-child {
+                margin-left: -15px;
+            }
+        }
+    }
+
+    img {
+        margin-left: 15px;
+        height: 15px;
+        width: 44px;
+    }
+
+    .apply {
+        a {
+            border-radius: 5px;
+            background-color: #ffffff;
+            border: solid 1px #f57c00;
+            cursor: pointer;
+            margin-bottom: 40px;
+            color: #111111;
+            text-decoration: none;
+            padding: 8px 30px;
+        }
+
+        a:focus {
+            outline: none;
+        }
+    }
+}
+
+.jsp-button {
+    @media screen and (max-width: 767px) {
+        width: 40%;
+        margin: 0 5%;
+        min-width: 125px;
+    }
+}
+
+::ng-deep .binding-property * {
+    font-size: 16px;
+}
+
+::ng-deep .binding-property ul {
+    padding-left: 20px;
+}
+
+div,
+p {
+    overflow-wrap: break-word;
+}
+
+.hidden {
+    display: none;
+}

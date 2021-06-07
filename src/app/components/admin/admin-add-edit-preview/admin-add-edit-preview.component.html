@@ -1,0 +1,12 @@
+<div class="container preview my-4">
+  <div class="row justify-content-center">
+    <div class="col-lg-6 text-right">
+      <button type="button" class="btn btn-block btn-outline-default btn-round" (click)="edit()">
+        Редагувати</button>
+    </div>
+    <div class="col-lg-6 text-left">
+      <button [disabled]="isPublishClicked" type="button" class="btn btn-block btn-outline-default btn-round" (click)="publish()">
+        Опублікувати</button>
+    </div>
+  </div>
+</div>

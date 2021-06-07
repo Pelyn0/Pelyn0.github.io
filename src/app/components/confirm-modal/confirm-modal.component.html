@@ -1,0 +1,22 @@
+<div class="modal-body pt-4 px-4">
+  <div class="cancel-button">
+    <button type="button" class="close pull-right" aria-label="Close" (click)="onCancel()">
+      <span aria-hidden="true">&times;</span> </button>
+  </div>
+  <div class="text-center">
+    <div>
+      <div class="text-center">
+        <p class="dark-text my-4">Ви впевнені?</p>
+        <div class="col-12 mx-auto text-center">
+          <p>Ви справді хочете видалити {{message}}?</p>
+        </div>
+      </div>
+      <div class="container py-2">
+        <div class="d-flex justify-content-around mt-5 mb-4">
+          <button (click)="onConfirm()" class="confirm-delete-button btn btn-outline-default btn-round flex-grow-1"><i class="nc-icon nc-check-2"></i> Так</button>
+          <button (click)="onCancel()" class="cancel-delete-button btn btn-outline-default btn-round flex-grow-1"><i class="nc-icon nc-simple-remove"></i> Відмінити</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

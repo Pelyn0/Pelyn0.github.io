@@ -1,0 +1,34 @@
+
+<div class="vacancy-box" [routerLink]="['/product', product.id]">
+
+  <div class="row vacancy mt-md-0 mt-3">
+    <div class="col-md-9 order-last order-sm-first mt-2 mt-sm-0">
+      <p class="title">{{product?.title}}</p>
+    </div>
+  </div>
+  <div class="location">
+    <span class="text-muted">
+      {{product.tags}}
+    </span>
+  </div>
+  <p class="about col-10 p-0" [innerHTML]="product?.description"></p>
+
+  <div class="row edit-bar">
+    <div class="col-lg-7 col-md-9 col-sm-12">
+      <ul>
+        <li class="jsp-tooltip">
+          <a (click)="deleteProduct($event)"
+            tooltip="Delete the product" placement="top" containerClass="jsp-tooltip">
+          <img src="assets/img/system_icons/delete.png">
+          </a>
+        </li>
+        <li class="jsp-tooltip">
+          <a [routerLink]="['/edit-product', product.id]"
+             tooltip="Edit the product" placement="top" containerClass="jsp-tooltip">
+            <img src="assets/img/system_icons/edit.png">
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
