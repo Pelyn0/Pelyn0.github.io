@@ -34,5 +34,5 @@ jobs:
       with:
         app-name: volur
         publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_80CB1765AE9740A5ABE4ED0D2CAD11B6 }}
-        package: ./dist/volur
+        package: .
 
