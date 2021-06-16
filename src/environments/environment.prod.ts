@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  baseApi: 'https://localhost:44379/',
+  baseApi: 'https://volurapi.azurewebsites.net/',
 };
